@@ -1,54 +1,37 @@
-<?php require_once __DIR__ . '/core/user.php'; ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Tool Lọc Bạn Bè Facebook</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tool Facebook VIP</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="menu.js" defer></script>
 </head>
 <body>
 
-<!-- Nút 3 gạch góc trái -->
+<div class="header">
+  <img src="https://i.imgur.com/WFhJPcD.jpg" alt="Banner" class="banner">
+  <h1 class="logo">🔥 TOOL FACEBOOK VIP 🔥</h1>
+</div>
+
 <div id="menu-toggle">☰</div>
-
-<!-- Menu bên trái -->
-<div id="side-menu" style="display:none;">
+<nav id="side-menu" class="hidden">
   <ul>
-    <li><a href="index.php">🏠 Trang chủ</a></li>
-    <?php if (!current_user()): ?>
-      <li><a href="auth/login.php">🔐 Đăng nhập</a></li>
-      <li><a href="auth/register.php">📝 Đăng ký</a></li>
-    <?php else: ?>
-      <li><a href="vip/buy_vip.php">🔓 Mua VIP</a></li>
-      <li><a href="auth/logout.php">🚪 Đăng xuất</a></li>
-    <?php endif; ?>
+    <li><a href="#">Trang chủ</a></li>
+    <li><a href="#">Tool miễn phí</a></li>
+    <li><a href="#">Mua VIP</a></li>
+    <li><a href="#">Đăng nhập</a></li>
+    <li><a href="#">Admin</a></li>
   </ul>
+</nav>
+
+<div class="content">
+  <h2>Xin chào đến với Tool Facebook VIP</h2>
+  <p>Bạn có thể dùng thử <strong>2 lần miễn phí</strong>. Sau đó, hãy <strong>mua VIP</strong> để mở khoá full tính năng nhé!</p>
+  <button class="btn">Dùng thử miễn phí</button>
+  <button class="btn vip">Nâng cấp VIP</button>
 </div>
 
-<!-- Nội dung chính -->
-<div style="margin-left: 20px;">
-  <h2>🎯 Tool Lọc Bạn Bè Facebook</h2>
-
-  <?php if (!current_user()): ?>
-    <p>🔔 Vui lòng <a href="auth/login.php">đăng nhập</a> để sử dụng công cụ.</p>
-  <?php else: ?>
-    <p>👋 Xin chào <b><?= current_user()['username'] ?></b></p>
-    <p>🎫 Lượt sử dụng còn lại:
-      <b style="color:green">
-        <?= current_user()['vip_level'] == 7 ? "Không giới hạn" : current_user()['remaining_uses'] ?>
-      </b>
-    </p>
-
-    <form method="POST" action="tool/get_friends.php">
-      <textarea name="cookie" rows="4" cols="50" placeholder="Dán cookie Facebook tại đây..."></textarea><br><br>
-      <button>Lọc bạn bè</button>
-    </form>
-    <br>
-    <a href="vip/buy_vip.php">💎 Nâng cấp VIP để dùng nhiều lượt hơn!</a>
-  <?php endif; ?>
-</div>
-
-<!-- JS mở menu -->
-<script src="assets/menu.js"></script>
 </body>
 </html>
