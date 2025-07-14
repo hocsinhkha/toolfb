@@ -34,6 +34,7 @@ body {
   text-shadow: 2px 2px #ff00c8;
 }
 
+/* Nút menu ☰ */
 #menu-toggle {
   font-size: 30px;
   position: fixed;
@@ -43,20 +44,39 @@ body {
   z-index: 9999;
 }
 
+/* Menu trượt */
 #side-menu {
-  background: #222;
   position: fixed;
   top: 0;
   left: -220px;
-  width: 200px;
+  background: #222;
+  color: #fff;
+  width: 220px;
   height: 100%;
   padding: 20px;
-  transition: all 0.3s;
+  transition: left 0.3s ease-in-out;
   z-index: 999;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Khi menu được mở */
+#side-menu.show {
+  left: 0;
+}
+
+/* Nút ✖ đóng menu */
+#menu-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ff6666;
 }
 
 #side-menu ul {
   list-style: none;
+  padding-top: 50px;
 }
 
 #side-menu ul li {
@@ -67,10 +87,6 @@ body {
   color: #00ffea;
   text-decoration: none;
   font-size: 16px;
-}
-
-#side-menu.show {
-  left: 0;
 }
 
 .content {
