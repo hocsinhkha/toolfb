@@ -1,18 +1,38 @@
 <?php
-require_once __DIR__ . '/../core/db.php';
-session_start();
+require_once '../core/db.php';
+require_once '../core/user.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $u = $_POST['username'];
-    $p = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $stmt = $db->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-    $stmt->execute([$u, $p]);
-    echo "Đăng ký thành công! <a href='login.php'>Đăng nhập</a>";
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    
+    $success = registerUser($username, $password);
+    if ($success) {
+        header('Location: login.php');
+        exit;
+    } else {
+        $error = "Tên đăng nhập đã tồn tại.";
+    }
 }
 ?>
-<form method="POST">
-  <h3>Đăng ký</h3>
-  <input name="username" placeholder="Username"><br>
-  <input name="password" type="password" placeholder="Mật khẩu"><br>
-  <button>Đăng ký</button>
-</form>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký - Tool Facebook VIP</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="form-container">
+  <h2>📝 Đăng ký</h2>
+  <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
+  <form method="POST">
+    <input type="text" name="username" placeholder="👤 Tên đăng nhập" required>
+    <input type="password" name="password" placeholder="🔒 Mật khẩu" required>
+    <button class="btn">Đăng ký</button>
+  </form>
+  <p>Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
+</div>
+</body>
+</html>
