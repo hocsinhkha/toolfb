@@ -1,8 +1,7 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 
-# Copy toàn bộ code vào thư mục web gốc
+# Copy toàn bộ source code vào thư mục web
 COPY . /var/www/html/
 
-# Mở port cho web
-EXPOSE 80
+# Cấp quyền cho thư mục database (nếu có)
 RUN mkdir -p /var/www/html/database && chmod -R 777 /var/www/html/database
