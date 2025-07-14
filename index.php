@@ -27,7 +27,7 @@
 
 <!-- Header -->
 <div class="header">
-  <img src="https://i.imgur.com/WFhJPcD.jpg" alt="Banner" class="banner">
+  <img src="https://i.imgur.com/NpZ3cDU.jpg" alt="Banner" class="banner">
   <h1 class="logo">🔥 TOOL FACEBOOK VIP 🔥</h1>
 </div>
 
