@@ -1,20 +1,26 @@
 <?php
 session_start();
-$admin_password = 'thahsiucapvippro03@'; // đổi tại đây
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['password'] === $admin_password) {
-        $_SESSION['admin_logged_in'] = true;
-        header('Location: admin.php');
-        exit;
-    } else {
-        $error = "Sai mật khẩu!";
-    }
+if ($_POST['pass'] === 'thahsiucapvippro03@') {
+  $_SESSION['admin'] = true;
+  header("Location: admin.php");
+  exit;
 }
 ?>
-<h2>Đăng nhập admin</h2>
-<form method="POST">
-    <input type="password" name="password" placeholder="Mật khẩu admin">
-    <button type="submit">Đăng nhập</button>
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-</form>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="form-container">
+  <h2>🔐 Admin Đăng Nhập</h2>
+  <form method="POST">
+    <input type="password" name="pass" placeholder="Mật khẩu admin">
+    <button class="btn">Đăng Nhập</button>
+  </form>
+</div>
+</body>
+</html>
