@@ -6,61 +6,71 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background: #1c1c1c;
-  color: #fff;
+  background: linear-gradient(120deg, #d0f1ff, #a0e4ff, #d0f1ff);
+  animation: shine 10s infinite;
+  color: #002244;
   padding: 10px;
+  min-height: 100vh;
+}
+
+@keyframes shine {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 a {
-  color: #00ffee;
+  color: #0055aa;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .header {
   text-align: center;
-  background: linear-gradient(90deg, #ff00c8, #00ffee);
-  padding: 20px 10px;
-  border-radius: 8px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
 .banner {
   width: 100%;
-  max-height: 120px;
+  max-height: 150px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
+  color: #004488;
+  text-shadow: 1px 1px 2px #fff;
   margin-top: 10px;
-  color: #fff700;
-  text-shadow: 2px 2px #ff00c8;
 }
 
 #menu-toggle {
   font-size: 30px;
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 15px;
+  left: 15px;
   cursor: pointer;
   z-index: 9999;
-  color: #fff;
+  color: #004488;
 }
 
 #side-menu {
   position: fixed;
   top: 0;
-  left: -220px;
-  background: #222;
+  left: -230px;
+  background: rgba(0, 102, 153, 0.95);
   color: #fff;
-  width: 220px;
+  width: 230px;
   height: 100%;
   padding: 20px;
-  transition: left 0.3s ease-in-out;
+  transition: left 0.3s ease;
   z-index: 999;
-  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 3px 0 12px rgba(0,0,0,0.4);
 }
 
 #side-menu.show {
@@ -69,51 +79,55 @@ a {
 
 #menu-close {
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 15px;
   font-size: 24px;
   cursor: pointer;
-  color: #ff6666;
+  color: #ffdddd;
 }
 
 #side-menu ul {
   list-style: none;
-  padding-top: 50px;
+  margin-top: 60px;
 }
 
 #side-menu ul li {
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 #side-menu ul li a {
-  color: #00ffea;
-  text-decoration: none;
-  font-size: 16px;
+  color: #ffffff;
+  font-size: 18px;
 }
 
 .content {
-  margin-top: 20px;
   text-align: center;
+  padding: 20px;
 }
 
 .content h2 {
-  color: #00ffee;
+  font-size: 22px;
   margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
 .btn {
   padding: 10px 20px;
-  background: #00ff99;
-  color: #000;
+  background: #00ccff;
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-size: 16px;
   margin: 10px 5px;
   cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 0 10px #00ff99;
+  box-shadow: 0 0 10px #00ccff;
 }
 
 .btn.vip {
-  background: #ff00c8;
-  box-shadow: 0 0 10px #ff00c8;
+  background: #0077cc;
+  box-shadow: 0 0 10px #0077cc;
 }
