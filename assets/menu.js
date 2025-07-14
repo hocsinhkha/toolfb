@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('side-menu');
+  const toggle = document.getElementById('menu-toggle');
   const close = document.getElementById('menu-close');
 
   toggle.addEventListener('click', () => {
