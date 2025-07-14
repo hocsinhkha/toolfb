@@ -1,13 +1,10 @@
 <?php
-session_start();
-if (!isset($_SESSION['admin_logged_in'])) {
-    header('Location: login.php');
-    exit;
+require_once '../core/db.php';
+
+if (isset($_GET['id'])) {
+    $stmt = $db->prepare("DELETE FROM users WHERE id = ?");
+    $stmt->execute([$_GET['id']]);
 }
-require_once __DIR__ . '/../core/db.php';
 
-$id = $_GET['id'] ?? null;
-if (!$id) die("Thiếu ID user.");
-
-$db->prepare("DELETE FROM users WHERE id = :id")->execute(['id' => $id]);
-header('Location: admin.php');
+header("Location: admin.php");
+exit;
