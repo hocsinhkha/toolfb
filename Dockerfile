@@ -1,10 +1,13 @@
 FROM php:8.1-apache
 
-# Copy toàn bộ source code vào thư mục web server
-COPY . /var/www/html/
+# Cài PostgreSQL driver cho PDO
+RUN apt-get update && apt-get install -y libpq-dev \
+    && docker-php-ext-install pdo_pgsql
 
-# Cấp quyền thư mục database (nếu cần dùng SQLite)
-RUN mkdir -p /var/www/html/database && chmod -R 777 /var/www/html/database
+# Copy code
+COPY . /var/www/html
 
-# Bắt buộc mở cổng 80 để Render hoạt động
+# Cấp quyền ghi nếu cần
+RUN chmod -R 777 /var/www/html
+
 EXPOSE 80
