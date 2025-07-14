@@ -11,6 +11,11 @@ body {
   padding: 10px;
 }
 
+a {
+  color: #00ffee;
+  text-decoration: none;
+}
+
 .header {
   text-align: center;
   background: linear-gradient(90deg, #ff00c8, #00ffee);
@@ -34,7 +39,6 @@ body {
   text-shadow: 2px 2px #ff00c8;
 }
 
-/* Nút menu ☰ */
 #menu-toggle {
   font-size: 30px;
   position: fixed;
@@ -42,9 +46,9 @@ body {
   left: 10px;
   cursor: pointer;
   z-index: 9999;
+  color: #fff;
 }
 
-/* Menu trượt */
 #side-menu {
   position: fixed;
   top: 0;
@@ -59,12 +63,10 @@ body {
   box-shadow: 3px 0 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Khi menu được mở */
 #side-menu.show {
   left: 0;
 }
 
-/* Nút ✖ đóng menu */
 #menu-close {
   position: absolute;
   top: 10px;
