@@ -1,22 +1,40 @@
 <?php
-require_once __DIR__ . '/../core/db.php';
 session_start();
+require_once '../core/db.php';
+require_once '../core/user.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $u = $_POST['username'];
-    $p = $_POST['password'];
-    $stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->execute([$u]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($user && password_verify($p, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        header("Location: ../index.php");
-    } else echo "Sai thông tin đăng nhập.";
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    
+    $user = loginUser($username, $password);
+    if ($user) {
+        $_SESSION['user'] = $user;
+        header('Location: /');
+        exit;
+    } else {
+        $error = "Sai tài khoản hoặc mật khẩu.";
+    }
 }
 ?>
-<form method="POST">
-  <h3>Đăng nhập</h3>
-  <input name="username" placeholder="Username"><br>
-  <input name="password" type="password" placeholder="Mật khẩu"><br>
-  <button>Đăng nhập</button>
-</form>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập - Tool Facebook VIP</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="form-container">
+  <h2>🔐 Đăng nhập</h2>
+  <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
+  <form method="POST">
+    <input type="text" name="username" placeholder="👤 Tên đăng nhập" required>
+    <input type="password" name="password" placeholder="🔒 Mật khẩu" required>
+    <button class="btn">Đăng nhập</button>
+  </form>
+  <p>Chưa có tài khoản? <a href="register.php">Đăng ký</a></p>
+</div>
+</body>
+</html>
