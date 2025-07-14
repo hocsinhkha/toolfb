@@ -1,29 +1,38 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin_logged_in'])) {
-    header('Location: login.php');
-    exit;
-}
-require_once __DIR__ . '/../core/db.php';
+require_once '../core/db.php';
 
-$users = $db->query("SELECT * FROM users ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->query("SELECT * FROM users");
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<h2>Danh sách người dùng</h2>
-<a href="logout.php">Đăng xuất</a>
-<table border="1" cellpadding="6">
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý người dùng</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="form-container">
+  <h2>👑 Quản Lý Tài Khoản</h2>
+  <table border="1" width="100%" style="background: #fff8; border-radius: 10px;">
     <tr>
-        <th>ID</th><th>Tên</th><th>VIP</th><th>Lượt còn</th><th>Thao tác</th>
+      <th>ID</th><th>User</th><th>VIP</th><th>Sử dụng</th><th>Thao tác</th>
     </tr>
-    <?php foreach ($users as $u): ?>
+    <?php foreach ($users as $user): ?>
     <tr>
-        <td><?= $u['id'] ?></td>
-        <td><?= htmlspecialchars($u['username']) ?></td>
-        <td>VIP <?= $u['vip_level'] ?></td>
-        <td><?= $u['remaining_uses'] ?></td>
-        <td>
-            <a href="edit_user.php?id=<?= $u['id'] ?>">✏️ Sửa</a> |
-            <a href="delete_user.php?id=<?= $u['id'] ?>" onclick="return confirm('Xoá user này?')">❌ Xoá</a>
-        </td>
+      <td><?= $user['id'] ?></td>
+      <td><?= $user['username'] ?></td>
+      <td><?= $user['vip_level'] ?></td>
+      <td><?= $user['remaining_uses'] ?></td>
+      <td>
+        <a class="btn" href="edit_user.php?id=<?= $user['id'] ?>">✏️</a>
+        <a class="btn danger" href="delete_user.php?id=<?= $user['id'] ?>" onclick="return confirm('Xoá user này?')">🗑️</a>
+      </td>
     </tr>
     <?php endforeach; ?>
-</table>
+  </table>
+</div>
+</body>
+</html>
