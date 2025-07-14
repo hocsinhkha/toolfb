@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <title>TOOL FACEBOOK VIP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
-  <script src="menu.js" defer></script>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
@@ -18,26 +17,26 @@
   <div id="menu-close">✖</div>
   <ul>
     <li><a href="index.php">🏠 Trang chủ</a></li>
-    <li><a href="free.php">🛠 Tool miễn phí</a></li>
-    <li><a href="vip.php">💎 Mua VIP</a></li>
-    <li><a href="login.php">🔐 Đăng nhập</a></li>
+    <li><a href="tool/get_friends.php">👥 Lọc bạn bè</a></li>
+    <li><a href="vip/buy_vip.php">💎 Mua VIP</a></li>
+    <li><a href="auth/login.php">🔐 Đăng nhập</a></li>
     <li><a href="admin/login.php">⚙️ Admin</a></li>
   </ul>
 </nav>
 
-<!-- Phần đầu trang -->
-<div class="header">
-  <img src="https://ibb.co/mr4KW7sC" alt="Banner" class="banner">
-  <h1 class="logo">🌟 TOOL FACEBOOK VIP 🌟</h1>
-</div>
-
 <!-- Nội dung chính -->
-<div class="content">
-  <h2>Chào mừng đến với hệ thống Tool Facebook</h2>
-  <p>Dùng thử miễn phí <strong>2 lượt</strong>. Mua VIP để mở khoá full tính năng cực hot!</p>
-  <button class="btn">Dùng thử ngay</button>
-  <button class="btn vip">Nâng cấp VIP</button>
+<div class="container">
+  <div class="header">
+    <h1>🌟 TOOL FACEBOOK VIP 🌟</h1>
+    <p>Chào mừng bạn đến với công cụ lọc bạn bè chuyên nghiệp</p>
+  </div>
+
+  <div class="actions">
+    <a href="tool/get_friends.php" class="btn">Dùng thử miễn phí</a>
+    <a href="vip/buy_vip.php" class="btn vip">Nâng cấp VIP</a>
+  </div>
 </div>
 
+<script src="assets/menu.js"></script>
 </body>
 </html>
