@@ -1,13 +1,15 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("menu-toggle");
-  const menu = document.getElementById("side-menu");
-  const close = document.getElementById("close-menu");
+// Gắn vào tất cả trang có menu
 
-  toggle.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
+document.addEventListener('DOMContentLoaded', function () {
+  const menuToggle = document.getElementById('menu-toggle');
+  const sideMenu = document.getElementById('side-menu');
+  const menuClose = document.getElementById('menu-close');
+
+  menuToggle.addEventListener('click', function () {
+    sideMenu.style.left = '0'; // Mở menu
   });
 
-  close.addEventListener("click", () => {
-    menu.classList.add("hidden");
+  menuClose.addEventListener('click', function () {
+    sideMenu.style.left = '-250px'; // Đóng menu
   });
 });
