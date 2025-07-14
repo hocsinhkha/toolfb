@@ -2,3 +2,33 @@ body {
   font-family: Arial, sans-serif;
   padding: 20px;
 }
+#menu-toggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+}
+#side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #222;
+  color: #fff;
+  width: 200px;
+  height: 100%;
+  padding: 20px;
+  z-index: 999;
+}
+#side-menu ul {
+  list-style: none;
+  padding: 0;
+}
+#side-menu ul li {
+  margin: 10px 0;
+}
+#side-menu ul li a {
+  color: #fff;
+  text-decoration: none;
+}
