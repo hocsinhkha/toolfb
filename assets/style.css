@@ -1,83 +1,151 @@
+/* Toàn bộ style loè loẹt và responsive */
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #cceeff, #e6f7ff);
-  color: #000;
   padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(120deg, #a6f1f5, #d3c6ff);
+  background-attachment: fixed;
+  color: #333;
 }
 
+/* Container trung tâm */
+.form-container {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 20px;
+  background: #ffffffcc;
+  border-radius: 15px;
+  box-shadow: 0 0 12px #8888ff;
+}
+
+/* Tiêu đề */
+h2 {
+  text-align: center;
+  color: #0048ff;
+  text-shadow: 0 0 5px #fff;
+}
+
+/* Input, select */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #86c5ff;
+  border-radius: 8px;
+  box-shadow: inset 0 0 4px #ccc;
+  font-size: 16px;
+}
+
+/* Nút bấm */
+button.btn {
+  background: linear-gradient(45deg, #2d87ff, #0051ff);
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.2s;
+}
+
+button.btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #0051ff, #2d87ff);
+}
+
+/* Nút nguy hiểm (xoá) */
+button.btn.danger, a.btn.danger {
+  background: linear-gradient(45deg, #ff5e5e, #d40000);
+  color: #fff;
+}
+
+/* Menu toggle 3 gạch */
 #menu-toggle {
   position: fixed;
   top: 15px;
   left: 15px;
-  font-size: 26px;
+  font-size: 28px;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 999;
 }
 
+/* Sidebar menu */
 #side-menu {
   position: fixed;
   top: 0;
-  left: 0;
-  background: #004466;
+  left: -250px;
+  background: #222;
+  color: white;
   width: 250px;
   height: 100%;
-  color: white;
   padding: 20px;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-  z-index: 1000;
+  transition: 0.3s ease-in-out;
+  z-index: 998;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.4);
 }
+
+#side-menu h3 {
+  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #side-menu ul {
   list-style: none;
   padding: 0;
+  margin-top: 20px;
 }
+
 #side-menu ul li {
-  margin: 15px 0;
+  margin: 12px 0;
 }
+
 #side-menu ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-}
-#side-menu.hidden {
-  transform: translateX(-100%);
-}
-#side-menu:not(.hidden) {
-  transform: translateX(0);
-}
-
-#close-menu {
-  text-align: right;
-  font-size: 24px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.header-banner {
-  text-align: center;
-  padding: 60px 20px;
-  background-color: rgba(255,255,255,0.8);
-  border-radius: 10px;
-  margin: 30px auto;
-  width: 90%;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-}
-
-.header-banner h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.btn {
-  padding: 12px 20px;
-  background-color: #007bff;
   color: white;
   text-decoration: none;
-  border-radius: 6px;
-  margin: 10px;
-  display: inline-block;
+  font-weight: bold;
+  transition: 0.2s;
 }
-.btn.vip {
-  background-color: #28a745;
+
+#side-menu ul li a:hover {
+  color: #a6f1f5;
+}
+
+#menu-close {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Bảng admin */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  background: #f8f8ff;
+}
+
+table th {
+  background: #0048ff;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    margin: 60px auto;
+  }
 }
