@@ -1,25 +1,52 @@
 <?php
-require_once __DIR__ . '/db.php';
+// Chỉ khởi động session nếu chưa chạy
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-function current_user() {
-    global $db;
-    if (!isset($_SESSION['user_id'])) return null;
-    $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
-    $stmt->execute([$_SESSION['user_id']]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+require_once __DIR__ . '/db.php';
+
+// Hàm đăng nhập
+function loginUser($username, $password) {
+    global $pdo;
+
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt->execute(['username' => $username]);
+    $user = $stmt->fetch();
+
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['is_admin'] = $user['is_admin'];
+        return true;
+    }
+    return false;
 }
 
-function use_tool() {
-    global $db;
-    $user = current_user();
-    if (!$user) return false;
-    if ($user['vip_level'] == 7) return true;
-    if ($user['remaining_uses'] <= 0) return false;
+// Hàm đăng ký
+function registerUser($username, $password) {
+    global $pdo;
 
-    $stmt = $db->prepare("UPDATE users SET remaining_uses = remaining_uses - 1 WHERE id = ?");
-    $stmt->execute([$user['id']]);
-    return true;
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $stmt = $pdo->prepare("INSERT INTO users (username, password, is_admin) VALUES (:username, :password, 0)");
+    return $stmt->execute([
+        'username' => $username,
+        'password' => $hashedPassword
+    ]);
+}
+
+// Hàm kiểm tra đăng nhập
+function isLoggedIn() {
+    return isset($_SESSION['username']);
+}
+
+// Hàm kiểm tra quyền admin
+function isAdmin() {
+    return isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
+}
+
+// Hàm đăng xuất
+function logoutUser() {
+    session_unset();
+    session_destroy();
 }
